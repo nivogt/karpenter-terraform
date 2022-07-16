@@ -2,4 +2,4 @@
 .lock
 .tfstate
 .backup
-.hcl
+.terraform.lock.hcl
