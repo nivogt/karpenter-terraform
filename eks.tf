@@ -13,11 +13,11 @@ module "vpc" {
   version = "3.12.0"
 
   name = var.cluster_name
-  cidr = "10.0.0.0/16"
+  cidr = var.cidr
 
   azs             = var.azs
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  private_subnets = var.private_subnets
+  public_subnets  = var.public_subnets
 
   enable_nat_gateway     = true
   single_nat_gateway     = true
@@ -36,7 +36,7 @@ module "eks" {
   version = "18.17.0"
 
   cluster_name    = var.cluster_name
-  cluster_version = "1.21"
+  cluster_version = var.cluster_version
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
